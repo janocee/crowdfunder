@@ -1,13 +1,4 @@
 class UsersController < ApplicationController
-
-	def index
-		@users = User.all
-	end
-
-	def show
-		@user = User.find(params[:id])
-	end
-
 	def new
 		@user = User.new
 	end
@@ -17,22 +8,16 @@ class UsersController < ApplicationController
 		if @user.save
 			redirect_to welcome_url, :notice => "Signed Up!"
 		else
-			render :new
+			render "new"
 		end
 
 	end
 
-	def edit
+private
 
-	end
-
-	def update
-
-	end
-
-	def destroy
-
-	end
+def user_params
+	params.require(:user).permit(:username, :email, :password, :password_confirmation, :first_name, :last_name)
+end
 
 end
 
