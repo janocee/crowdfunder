@@ -1,0 +1,7 @@
+<h1>Check out these cool projects!</h1>
+
+<% @projects.each do |project| %>
+	<%= link_to project.title, "/projects/#{project.id}" %><br />
+	<%= project.description %><br />
+	<%= project.end_time %><br/>
+<% end %>
