@@ -2,4 +2,6 @@
 <%= link_to "Back to home", root_url %>
 <%= render 'form' %>
 
+<%= link_to "Add breakpoints", new_project_breakpoint_path(@project) %>
+
 <%= link_to "Don't want it", project_path(@project), method: :delete, data: { confirm: 'Are you sure you wanna stop working on this?' } %>

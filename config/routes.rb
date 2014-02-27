@@ -1,7 +1,4 @@
 Crowdfunder::Application.routes.draw do
-
-  get "breakpoints/new"
-  get "breakpoints/edit"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -9,6 +6,7 @@ Crowdfunder::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
+
   root to: 'welcome#index'
 
   # Example of regular route:
@@ -18,11 +16,13 @@ Crowdfunder::Application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-    resources :projects
+  resources :projects do
+    resources :breakpoints
+  end
 
-    resources :users
+  resources :users
 
-    resources :sessions
+  resources :sessions
 
   # Example resource route with options:
   #   resources :products do

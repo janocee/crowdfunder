@@ -1,0 +1,21 @@
+<%= form_for([@project, @breakpoint]) do |f| %>
+	<div class="field">
+		<%= f.label :pledge_amt %>
+		<%= f.number_field :pledge_amt %>
+	</div>
+
+	<div class="field">
+		<%= f.label :decription %>
+		<%= f.text_area :description %>
+	</div>
+
+	<div class="field">
+		<%= f.label :delivery %>
+		<%= f.text_field :delivery %>
+	</div>
+
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+
+<% end %>
