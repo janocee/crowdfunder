@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+	before_filter :load_project, :only => [:show, :edit, :update, :destroy]
 
 	def index
 		@projects = Project.all
@@ -10,6 +11,7 @@ class ProjectsController < ApplicationController
 
 	def create
 		@project = Project.new(project_params)
+		@project.owner = current_user
 		if @project.save
 			redirect_to projects_url
 		else
@@ -42,8 +44,13 @@ class ProjectsController < ApplicationController
 	end
 
 	private
+
+	def load_project
+		@project = Project.find(params[:id])
+	end
+
 	def project_params
-		params.require(:project).permit(:title, :category, :image, :goal, :description, :pledged, :start_time, :end_time)
+		params.require(:project).permit(:title, :category, :image, :goal, :description, :pledged, :start_time, :end_time, :user_id)
 	end
 
 end

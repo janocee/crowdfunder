@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227185903) do
+ActiveRecord::Schema.define(version: 20140227210609) do
 
   create_table "breakpoints", force: true do |t|
     t.integer  "pledge_amt"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20140227185903) do
     t.string   "image"
     t.string   "category"
     t.integer  "goal"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|

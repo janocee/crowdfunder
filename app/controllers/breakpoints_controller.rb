@@ -1,4 +1,6 @@
 class BreakpointsController < ApplicationController
+  before_filter :load_project
+
   def new
   	@project = Project.find(params[:project_id])
   	@breakpoint = Breakpoint.new
