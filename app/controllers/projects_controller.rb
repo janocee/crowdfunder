@@ -1,16 +1,18 @@
 class ProjectsController < ApplicationController
 	before_filter :load_project, :only => [:show, :edit, :update, :destroy]
+	before_filter :ensure_ownership, :except => [:index, :show, :new, :create]
+
 
 	def index
 		@projects = Project.all
 	end
 
 	def new
-		@project = Project.new
+		@project = Projects.new
 	end
 
 	def create
-		@project = Project.new(project_params)
+		@project = Projects.new(project_params)
 		@project.owner = current_user
 		if @project.save
 			redirect_to projects_url
@@ -20,15 +22,12 @@ class ProjectsController < ApplicationController
 	end
 
 	def show
-		@project = Project.find(params[:id])
 	end
 
 	def edit
-		@project = Project.find(params[:id])
 	end
 
 	def update
-		@project = Project.find(params[:id])
 
 		if @project.update_attributes(project_params)
 			redirect_to project_path(@project)
@@ -38,7 +37,6 @@ class ProjectsController < ApplicationController
 	end
 
 	def destroy
-		@project = Project.find(params[:id])
 		@project.destroy
 		redirect_to projects_path
 	end
@@ -47,6 +45,13 @@ class ProjectsController < ApplicationController
 
 	def load_project
 		@project = Project.find(params[:id])
+	end
+
+	def ensure_ownership
+		unless current_user == @project.owner
+			flash[:alert] = "You have invalid access to this project!"
+			redirect_to projects_path
+		end
 	end
 
 	def project_params
