@@ -9,7 +9,18 @@
 <h3>Rewards!</h3>
 
 <% @project.breakpoints.each do |breakpoint| %>
-	Pledge: <%= breakpoint.pledge_amt %><br>
-	Description: <%= breakpoint.description %><br>
-	Estimated Delivery: <%= breakpoint.delivery %><br>
+	<div class="breakpoint">
+		Pledge: <%= breakpoint.pledge_amt %><br>
+		Description: <%= breakpoint.description %><br>
+		Estimated Delivery: <%= breakpoint.delivery %><br>
+
+		<%= link_to "poop",  :method => "POST" %>
+
+
+		<%= form_for @pledge do |f| %>
+			<%= f.hidden :breakpoint_id, breakpoint.id %>
+			<%= f.submit "Pledge!" %>
+		<% end %>
+	
+	</div>
 <% end %>

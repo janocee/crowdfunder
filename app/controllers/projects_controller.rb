@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def show
-
+		@pledge = Pledge.new
 	end
 
 	def edit
