@@ -2,12 +2,10 @@ class BreakpointsController < ApplicationController
   before_filter :load_project
 
   def new
-  	@project = Project.find(params[:project_id])
   	@breakpoint = Breakpoint.new
   end
 
   def create
-  	@project = Project.find(params[:project_id])
   	@breakpoint = @project.breakpoints.build(breakpoint_params)
 
   	if @breakpoint.save
@@ -40,6 +38,10 @@ class BreakpointsController < ApplicationController
   end
 
   private
+
+  def load_project
+    @project = Project.find(params[:project_id])
+  end
 
   def breakpoint_params
   	params.require(:breakpoint).permit(:pledge_amt, :description, :delivery)
