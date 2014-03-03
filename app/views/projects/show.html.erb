@@ -5,3 +5,11 @@
 <p>Description: <%= @project.description %></p>
 <p>Goal: $<%= @project.goal %></p>
 <p></p>
+
+<h3>Rewards!</h3>
+
+<% @project.breakpoints.each do |breakpoint| %>
+	Pledge: <%= breakpoint.pledge_amt %><br>
+	Description: <%= breakpoint.description %><br>
+	Estimated Delivery: <%= breakpoint.delivery %><br>
+<% end %>

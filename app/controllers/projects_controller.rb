@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
 	before_filter :load_project, :only => [:show, :edit, :update, :destroy]
 	before_filter :ensure_ownership, :except => [:index, :show, :new, :create]
+	before_filter :ensure_logged_in, :except => [:index, :show]
 
 
 	def index
@@ -22,6 +23,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def show
+
 	end
 
 	def edit
