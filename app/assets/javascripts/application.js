@@ -12,5 +12,24 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+	$("form").on("submit", function(e) {
+		e.preventDefault();
+
+		var url = $(this).attr("action");
+		console.log(url);
+
+		$.ajax({
+					url: url,
+					data: $(this).serialize(),
+					type: "POST",
+					dataType: "json",
+					success: function(data) {
+						console.log(data);
+						$("span#pledged_amt").text(data.pledged);
+					}	
+				})
+	});
+})

@@ -9,10 +9,17 @@ class PledgesController < ApplicationController
 		p.user = current_user
 
 		if p.save
+
 			project = p.breakpoint.project
-			redirect_to project_path( project ), :notice => "YOU MADE A PLEDGE!"
+			respond_to do |format|
+				format.html { redirect_to project_path( project ), :notice => "YOU MADE A PLEDGE!" }
+				format.json { render json: { pledged: project.pledged} }
+			end
 		else
-			render 'projects/index'
+			respond_to do |format|
+				format.html { render 'projects/index' }
+				format.json { }
+			end
 		end
 	end
 
