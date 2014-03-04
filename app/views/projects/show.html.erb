@@ -14,11 +14,12 @@
 		Description: <%= breakpoint.description %><br>
 		Estimated Delivery: <%= breakpoint.delivery %><br>
 
-		<%= link_to "poop",  :method => "POST" %>
-
+<!-- 		
+		<%= link_to "poop", pledges_path( :breakpoint_id => breakpoint.id, :poop => 'poop' ), :method => "POST" %>
+ -->
 
 		<%= form_for @pledge do |f| %>
-			<%= f.hidden :breakpoint_id, breakpoint.id %>
+			<%= f.hidden_field :breakpoint_id, { :value => breakpoint.id } %>
 			<%= f.submit "Pledge!" %>
 		<% end %>
 	

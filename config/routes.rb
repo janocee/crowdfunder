@@ -20,6 +20,8 @@ Crowdfunder::Application.routes.draw do
     resources :breakpoints
   end
 
+  resources :pledges, :only => [:create]
+
   resources :users
 
   resources :sessions
