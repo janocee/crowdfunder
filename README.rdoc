@@ -1,6 +1,5 @@
-== SUP Y'ALL
+Crowdfunder
+==
 
-Ryan is the best.
-
-
-asianavenue: xXyUmMyLoLlIpOpXx
+Bitmaker Labs - assignment
+  Kickstarter clone
